@@ -1,0 +1,47 @@
+{
+  "name": "erc20tokenfaucet",
+  "version": "1.0.0",
+  "description": "A useful ERC20 token faucet for testing ERC20 smart contract functions",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3",
+    "browserify": "^17.0.0",
+    "chai": "^4.3.6",
+    "ethers": "^5.6.9",
+    "sweetalert2": "^11.4.24"
+  },
+  "scripts": {
+    "cypress-test": "cross-env CYPRESS_REMOTE_DEBUGGING_PORT=9222 cypress open",
+    "hardhat-test": "npx hardhat test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kerry1207/MyToken.git"
+  },
+  "keywords": [
+    "erc20tokenfaucet",
+    "erc20",
+    "erc20token",
+    "kerrytoken",
+    "ethers",
+    "sweetalert2",
+    "solidity",
+    "javascript",
+    "nodejs",
+    "blockchain",
+    "web3"
+  ],
+  "author": "Kerry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kerry1207/MyToken/issues"
+  },
+  "homepage": "https://github.com/Kerry1207/MyToken#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "cross-env": "^7.0.3",
+    "cypress": "^10.4.0",
+    "cypress-metamask-v2": "^1.7.1",
+    "hardhat": "^2.11.2",
+    "tailwindcss": "^3.1.4"
+  }
+}

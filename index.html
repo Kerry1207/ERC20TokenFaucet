@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ERC20 Token Faucet</title>
+        <meta name="description" content="A useful ERC20 token faucet for developers!">
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="./resources/favicon-erc20tokenfaucet.png">
+        <script src="./dist/bundle.js"></script>
+        <link href="/dist/output.css" rel="stylesheet" />
+    </head>
+    <body class="bg-gradient-to-r from-sky-500 to-indigo-500">
+        <div class="container mx-auto">
+            <div class="row">
+                <div class="grid grid-cols-1 gap-8 py-5 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-8 lg:col-start-2 lg:col-end-3">
+                    <div class="grid col-span-1 text-center p-12 md:col-span-2 md:p-16 lg:col-start-2 lg:p-16 ">
+                        <h1 class="text-white font-BebasNeue-Regular text-defaultSizeTitle text-shadow lg:text-lgSizeTitle md:text-5xl md:text-mdSizeTitle ">FAUCET KERRY TOKEN </h1>
+                        <p class="text-black font-BebasNeue-Regular text-2xl">Ethereum ERC20 Faucet</p>
+                        <p class="text-yellow-300 font-bold underline underline-offset-4 pt-8">Currently only available for Metamask Wallets!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row lg:mb-300">
+                <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-8">
+                    <div class="col-span-1 bg-white shadow-md pt-12 pb-12 rounded text-center md:col-span-2 md:p-20 md:mb-4 lg:col-span-2 lg:col-start-2 lg:p-24 lg:mb-4">
+                        <button id="btnBalance" class="w-4/5 h-25 rounded-md border-solid border-2 border-sky-500 text-black p-6 mb-5 text-base drop-shadow-lg hidden hover:scale-105" data-cy="btnSeeMyBalance" onclick="seeMyBalance()">SEE MY BALANCE</button>
+                        <img src="./resources/angle-circle-arrow-up.png" id="arrowBottom" class="mx-auto animate-bounce w-20 h-20 mb-5" alt="Arrow image for indicates Connect button" />
+                        <button id="btnConnect" class="w-4/5 h-25 rounded-md bg-black text-white p-6 truncate drop-shadow-lg hover:scale-105 md:text-mdSizeAddress lg:text-base" data-cy="btnConnect" onclick="connect()">Connect your wallet</button>
+                        <button id="btnClaim" class="w-4/5 h-25 rounded-md bg-red-600 text-white p-6 mt-5 text-base drop-shadow-lg hidden hover:scale-105 " data-cy="btnClaim" onclick="transferToken()">MINT KERRY TOKEN</button>
+                        <p id="labelUnlockMetamask" class="underline mt-4" data-cy="labelUnlockMetamask">Remember to unlock your Metamask wallet</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="grid grid-cols-1 md:grid-cols-2 md:col-start-2 lg:grid-cols-4 lg:col-start-2 lg:col-end-3 lg:gap-8">
+                    <div class="col-span-1 mr-auto ml-auto p-8 md:col-span-2 lg:col-span-2 lg:col-start-2 lg:col-end-4 ">
+                        <a class="float-right" href="https://github.com/Kerry1207" target="_blank">
+                            <img src="/resources/GitHub-Mark-Light-120px-plus.png" class="w-20 h-20 md:w-100 md:h-100 lg:w-100 lg:h-100"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

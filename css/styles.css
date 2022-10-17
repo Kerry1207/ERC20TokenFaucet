@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: url("/font/BebasNeue-Regular.ttf");
+}
+
+@tailwind utilities;
+
+@layer utilities {
+    .text-shadow {
+        text-shadow: 4px 4px black;
+    }
+
+    @keyframes move {
+        0%, 100% {transform: translateY(0); }
+        50% {transform: translateY(50px); }
+    }
+}
