@@ -12,7 +12,7 @@
   </a>
 </p>
 
-🏠 [Homepage](https://github.com/Kerry1207/ERC20TokenFaucet#readme)<br/>
+🏠 Hosted on: <a href="https://www.erc20tokenfaucet.com/">https://www.erc20tokenfaucet.com/</a><br/>
 
 > <br/>A useful <b>ERC20 token faucet</b> for testing ERC20 smart contract functions!<br/>
 > Actually, you can mint Kerry Token only in Goerli Testnet.<br/><br/>
