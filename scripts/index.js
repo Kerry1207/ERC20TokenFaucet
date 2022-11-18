@@ -4,10 +4,6 @@ const { default: Swal } = require('sweetalert2');
 const constant = require('./constant');
 var provider;
 
-document.addEventListener('DOMContentLoaded', function() {
-   connect();
-}, false);
-
 window.connect = async function() {
     try {
         let currentSigner = await connectWallet();
