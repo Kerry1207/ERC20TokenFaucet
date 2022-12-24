@@ -7,8 +7,10 @@ var titleMintTokenSuccessfully = 'Successfully Transfer';
 var titleError = 'Error';
 var titleBalance = 'Your balance';
 var errorMessage4001 = 'You have rejected the request. Please, try again and make sure to accept it!';
-var errorMessageActionRejected = 'You have denied the transaction signature. Please, try again and make sure to sign the transaction!';
+var errorMessageActionRejected = 'You have denied the transaction signature. Please, try again and make sure to sign it!';
 var errorMessageCallException = 'Please check your Metamask network have been set to Goerli Network';
+var goerliNetworkName = 'GOERLI';
+var mainnetNetworkName = 'HOMESTEAD';
 
 describe('Interaction Metamask wallet when it doesn\'t connect to site yet', () => {
   
@@ -25,7 +27,6 @@ describe('Interaction Metamask wallet when it doesn\'t connect to site yet', () 
     cy.get('[class="swal2-confirm swal2-styled"]').click();
     cy.get('[data-cy="btnConnect"]').should('be.visible');
     cy.get('[data-cy="btnConnect"]').should('have.text', 'Connect your wallet');
-    cy.get('[data-cy="labelUnlockMetamask"]').should('be.visible');
     cy.get('[data-cy="btnSeeMyBalance"]').should('not.be.visible');
     cy.get('[data-cy="btnClaim"]').should('not.be.visible');
   })
@@ -42,6 +43,7 @@ describe('Interaction Metamask wallet when it connected to site', () => {
     it('displaying Metamask wallet address account inside site and relative functionalities', async() => {
       cy.visit('http://localhost:8080');
       cy.get('[data-cy="btnConnect"]').click();
+      cy.get('[data-cy="labelNetworkConnected"]').should('be.visible').and('have.text', goerliNetworkName);
       cy.get('[data-cy="btnConnect"]').should('be.visible').and('have.text', walletAddress);
       cy.get('[data-cy="btnSeeMyBalance"]').should('be.visible');
       cy.get('[data-cy="btnClaim"]').should('be.visible');
@@ -50,6 +52,7 @@ describe('Interaction Metamask wallet when it connected to site', () => {
     it('displaying balance token account when metamask wallet connected and user click on button called "See my Balance"', () => {
       cy.visit('http://localhost:8080');
       cy.get('[data-cy="btnConnect"]').click();
+      cy.get('[data-cy="labelNetworkConnected"]').should('be.visible').and('have.text', goerliNetworkName);
       cy.get('[data-cy="btnSeeMyBalance"]').should('be.visible');
       cy.get('[data-cy="btnSeeMyBalance"]').click();
       cy.get('[id="swal2-title"]').contains(titleBalance);
@@ -59,6 +62,7 @@ describe('Interaction Metamask wallet when it connected to site', () => {
     it('display successfully message when user minted a token clicking on button called "Mint a token"', () => {
       cy.visit('http://localhost:8080');
       cy.get('[data-cy="btnConnect"]').click();
+      cy.get('[data-cy="labelNetworkConnected"]').should('be.visible').and('have.text', goerliNetworkName);
       cy.get('[data-cy="btnClaim"]').should('be.visible');
       cy.get('[data-cy="btnClaim"]').click();
       cy.get('[id="swal2-title"]').contains(titleMintTokenSuccessfully);
@@ -68,6 +72,7 @@ describe('Interaction Metamask wallet when it connected to site', () => {
     it('display error message when user reject to sign the mint token operation', () => {
       cy.visit('http://localhost:8080');
       cy.get('[data-cy="btnConnect"]').click();
+      cy.get('[data-cy="labelNetworkConnected"]').should('be.visible').and('have.text', goerliNetworkName);
       cy.get('[data-cy="btnClaim"]').should('be.visible');
       cy.get('[data-cy="btnClaim"]').click();
       cy.get('[id="swal2-title"]').contains(titleError);
@@ -87,6 +92,7 @@ describe('Interaction Metamask wallet when it connected to network different to 
   it('displaying site when metamask wallet connected', () => {
     cy.visit('http://localhost:8080');
     cy.get('[data-cy="btnConnect"]').click();
+    cy.get('[data-cy="labelNetworkConnected"]').should('be.visible').and('have.text', mainnetNetworkName);
     cy.get('[data-cy="btnConnect"]').should('be.visible').contains(walletAddress);
     cy.get('[data-cy="btnSeeMyBalance"]').should('be.visible');
     cy.get('[data-cy="btnClaim"]').should('be.visible');
@@ -95,6 +101,7 @@ describe('Interaction Metamask wallet when it connected to network different to 
   it('displaying error when user would like to see his balance', () => {
     cy.visit('http://localhost:8080');
     cy.get('[data-cy="btnConnect"]').click();
+    cy.get('[data-cy="labelNetworkConnected"]').should('be.visible').and('have.text', mainnetNetworkName);
     cy.get('[data-cy="btnConnect"]').should('be.visible').contains(walletAddress);
     cy.get('[data-cy="btnClaim"]').should('be.visible');
     cy.get('[data-cy="btnSeeMyBalance"]').should('be.visible').click();
@@ -106,6 +113,7 @@ describe('Interaction Metamask wallet when it connected to network different to 
   it('displaying error when user would like to do the mint operation', () => {
     cy.visit('http://localhost:8080');
     cy.get('[data-cy="btnConnect"]').click();
+    cy.get('[data-cy="labelNetworkConnected"]').should('be.visible').and('have.text', mainnetNetworkName);
     cy.get('[data-cy="btnConnect"]').should('be.visible').contains(walletAddress);
     cy.get('[data-cy="btnSeeMyBalance"]').should('be.visible');
     cy.get('[data-cy="btnClaim"]').should('be.visible');

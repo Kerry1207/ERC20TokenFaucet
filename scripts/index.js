@@ -1,14 +1,18 @@
 const constants = require('./constant');
 const { ethers } = require('ethers');
 const { default: Swal } = require('sweetalert2');
-const constant = require('./constant');
 var provider;
 
 window.connect = async function() {
     try {
         let currentSigner = await connectWallet();
         let currentSignerAddress = await currentSigner.getAddress();
-        setLayoutWalletConnected(currentSignerAddress);
+        let networkName = await identifyNetworkName();
+        setLayoutWalletConnected(currentSignerAddress, networkName);
+        window.ethereum.on('chainChanged', async function(){
+            var networkName = await identifyNetworkName();
+            setNetworkOnLayout(networkName);
+        });
     } catch(err) {
         handleError(err);
     }
@@ -18,8 +22,15 @@ window.seeMyBalance = async function() {
     try {
         let currentSigner = await connectWallet();
         let currentSignerAddress = await currentSigner.getAddress();
+        let checkNetwork = await identifyNetwork();
+        if(!checkNetwork) {
+            let errorNetworkNotAvailable = {
+                code: constants.ERROR_CODE_CALL_EXCEPTION,
+            };
+            throw errorNetworkNotAvailable;
+        }
         let userBalanceMessage = await retrieveUserBalance(currentSignerAddress);
-        var balanceAlertArgs = {
+        let balanceAlertArgs = {
             title: constants.TITLE_BALANCE,
             icon: constants.ICON_INFO,
             html: userBalanceMessage,
@@ -34,7 +45,14 @@ window.seeMyBalance = async function() {
 window.transferToken = async function() {
     try {
         let currentSigner = await connectWallet();
-        let contractInstance = new ethers.Contract(constants.GOERLI_TOKEN_ADDRESS, constants.ABI_TOKEN, currentSigner);
+        let checkNetwork = await identifyNetwork();
+        if(!checkNetwork) {
+            let errorNetworkNotAvailable = {
+                code: constants.ERROR_CODE_CALL_EXCEPTION,
+            };
+            throw errorNetworkNotAvailable;
+        }
+        let contractInstance = await createContractObj(currentSigner);
         let checkifExistContract = await provider.getCode(contractInstance.address);
         if(checkifExistContract === constants.ERROR_CODE_SMART_CONTRACT_ADDRESS_NOT_EXIST){
             let errorContractNotExists = {
@@ -43,10 +61,11 @@ window.transferToken = async function() {
             throw errorContractNotExists;
         }
         let transaction = await contractInstance.mintToken();
-        var transferAlertArgs = {
+        let network = await identifyNetworkName(); 
+        let transferAlertArgs = {
             title: constants.TITLE_SUCCESS,
             icon: constants.ICON_SUCCESS,
-            html: '<p>Awesome, you have minted 1 unit of Kerry Token! <br><br> You can see your transaction progress here: <br> <a href="' + constants.GOERLI_ETHERSCAN + transaction.hash + '" target="_blank" style="text-decoration:underline;color:blue;">' + transaction.hash + '</a></p>',
+            html: '<p>Awesome, you have minted 1 unit of Kerry Token! <br><br> You can see your transaction progress here: <br> <a href="' + (network == constants.GOERLI_NAME ? constants.GOERLI_ETHERSCAN : constants.SEPOLIA_ETHERSCAN) + transaction.hash + '" target="_blank" style="text-decoration:underline;color:blue;">' + transaction.hash + '</a></p>',
             showConfirmButton: true
         }
         fillshowAlert(transferAlertArgs);
@@ -57,8 +76,8 @@ window.transferToken = async function() {
 
 async function connectWallet() {
     if(typeof window.ethereum === 'undefined'){
-        var err = {
-            code: constant.ERROR_CODE_METAMASK_NOT_INSTALLED
+        let err = {
+            code: constants.ERROR_CODE_METAMASK_NOT_INSTALLED
         }
         throw err;
     }
@@ -68,34 +87,36 @@ async function connectWallet() {
 }
 
 async function retrieveUserBalance(currentSignerAddress) {
-    let contractInstance = new ethers.Contract(constants.GOERLI_TOKEN_ADDRESS, constants.ABI_TOKEN, provider);
-    let tokenName = await contractInstance.name();
-    let tokenSymbol = await contractInstance.symbol();
-    let tokenDecimal = await contractInstance.decimals();
-    let tokenUserBalance = await contractInstance.balanceOf(currentSignerAddress);
-    let networkName = contractInstance.provider._network.name;
-    let formattedNetworkName = networkName.replace(/./, networkName[0].toUpperCase());
+    var balanceMessage = "";
+    var contractInstance = await createContractObj(provider);
+    var tokenName = await contractInstance.name();
+    var tokenSymbol = await contractInstance.symbol();
+    var tokenDecimal = await contractInstance.decimals();
+    var tokenUserBalance = await contractInstance.balanceOf(currentSignerAddress);
+    var networkName = contractInstance.provider._network.name;
+    var formattedNetworkName = networkName.replace(/./, networkName[0].toUpperCase());
     tokenUserBalance = (tokenUserBalance / (Math.pow(10,18)));
-    let arrayMessages = [formattedNetworkName, contractInstance.address, tokenName, tokenSymbol, tokenDecimal, tokenUserBalance];
-    let arrayConstantsMessages = [constants.TEXT_TOKEN_NETWORK, constants.TEXT_TOKEN_ADDRESS, constants.TEXT_TOKEN_NAME, constants.TEXT_TOKEN_SYMBOL, constants.TEXT_TOKEN_DECIMAL, constants.TEXT_TOKEN_USER_BALANCE];
-    let balanceMessage = formatBalanceMessage(arrayMessages, arrayConstantsMessages);
-    return balanceMessage;
+    var arrayMessages = [formattedNetworkName, contractInstance.address, tokenName, tokenSymbol, tokenDecimal, tokenUserBalance];
+    var arrayConstantsMessages = [constants.TEXT_TOKEN_NETWORK, constants.TEXT_TOKEN_ADDRESS, constants.TEXT_TOKEN_NAME, constants.TEXT_TOKEN_SYMBOL, constants.TEXT_TOKEN_DECIMAL, constants.TEXT_TOKEN_USER_BALANCE];
+    balanceMessage = formatBalanceMessage(arrayMessages, arrayConstantsMessages);
+    return balanceMessage; 
 }
 
 function formatBalanceMessage(arrayMessages, arrayConstantsMessages) {
-    let balanceMessage = "";
+    var balanceMessage = "";
     for(let i = 0; i < arrayMessages.length && i < arrayConstantsMessages.length; i++) {
         balanceMessage = balanceMessage.concat(arrayConstantsMessages[i]).concat("<b>").concat(arrayMessages[i]).concat("</b>").concat("<br>");
     }
     return balanceMessage;
 }
 
-function setLayoutWalletConnected(signerAddress) {
-    let btnConnect = document.getElementById('btnConnect'); 
-    let arrowBottom = document.getElementById('arrowBottom');
-    let btnBalance = document.getElementById('btnBalance');
-    let btnClaim = document.getElementById('btnClaim');
-    let labelUnlockMetamask = document.getElementById('labelUnlockMetamask');
+function setLayoutWalletConnected(signerAddress, networkName) {
+    var btnConnect = document.getElementById('btnConnect'); 
+    var arrowBottom = document.getElementById('arrowBottom');
+    var btnBalance = document.getElementById('btnBalance');
+    var btnClaim = document.getElementById('btnClaim');
+    var labelUnlockMetamask = document.getElementById('labelUnlockMetamask');
+    var labelTextNetwork = document.getElementById('labelTextNetwork');
     btnConnect.textContent = signerAddress;
     btnConnect.classList.remove('bg-black');
     btnConnect.classList.remove('lg:text-base');
@@ -108,10 +129,12 @@ function setLayoutWalletConnected(signerAddress) {
     btnBalance.style.cssText += 'animation: move 2s;';
     btnClaim.style.cssText += 'animation: move 2s;';
     labelUnlockMetamask.classList.add('hidden');
+    labelTextNetwork.classList.remove('hidden');
+    setNetworkOnLayout(networkName);
 }
 
 function handleError(errorObject) {
-    let errorAlertArgs = null;
+    var errorAlertArgs = null;
     switch(errorObject.code) {
         case constants.ERROR_CODE_4001:
             errorAlertArgs = {
@@ -164,4 +187,34 @@ function fillshowAlert(args) {
         html: args.html,
         showConfirmButton: args.showConfirmButton
     });
+}
+
+async function identifyNetwork() {
+    var network = await provider.getNetwork();
+    var networkId = network.chainId.toString();
+    var arrayNetworkAllowed = constants.ALLOWED_NETWORKS;
+    return arrayNetworkAllowed.includes(networkId);
+}
+
+async function createContractObj(arg) { 
+    var network = await provider.getNetwork(); 
+    var networkAddressSmartContract;
+    switch(network.chainId.toString()) {
+        case constants.GOERLI_CHAINID:
+            networkAddressSmartContract = constants.GOERLI_TOKEN_ADDRESS;
+            break;
+        case constants.SEPOLIA_CHAINID:
+            networkAddressSmartContract = constants.SEPOLIA_TOKEN_ADDRESS;
+            break;
+    }
+    return (new ethers.Contract(networkAddressSmartContract, constants.ABI_TOKEN, arg));
+}
+
+async function identifyNetworkName() {
+    var network = await provider.getNetwork();
+    return (network.name.toUpperCase());
+}
+
+function setNetworkOnLayout(networkName) {
+    document.getElementById("labelNetworkConnected").innerHTML = networkName;
 }

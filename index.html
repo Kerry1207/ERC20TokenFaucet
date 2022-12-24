@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>ERC20 Token Faucet</title>
         <meta name="description" content="A useful ERC20 token faucet for developers!">
@@ -20,11 +20,11 @@
     <body class="bg-gradient-to-r from-sky-500 to-indigo-500">
         <div class="container mx-auto">
             <div class="row">
-                <div class="grid grid-cols-1 gap-8 py-5 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-8 lg:col-start-2 lg:col-end-3">
+                <div class="grid grid-cols-1 gap-8 py-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-8 lg:col-start-2 lg:col-end-3">
                     <div class="grid col-span-1 text-center p-12 md:col-span-2 md:p-16 lg:col-start-2 lg:p-16 ">
                         <h1 class="text-white font-BebasNeue-Regular text-defaultSizeTitle text-shadow lg:text-lgSizeTitle md:text-5xl md:text-mdSizeTitle ">FAUCET KERRY TOKEN </h1>
                         <p class="text-black font-BebasNeue-Regular text-2xl">Ethereum ERC20 Faucet</p>
-                        <p class="text-yellow-300 font-bold underline underline-offset-4 pt-8">Currently only available for Metamask Wallets!</p>
+                        <p id="labelTextNetwork" class="text-white font-bold pt-8 hidden">Currently, you're connected on: <span id="labelNetworkConnected" data-cy="labelNetworkConnected" class="text-yellow-200 text-shadow"></span></p>
                     </div>
                 </div>
             </div>

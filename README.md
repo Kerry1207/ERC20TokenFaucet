@@ -48,8 +48,8 @@
     <td style="border: 1px solid white;">KTK</td>
     <td style="border: 1px solid white;">18</td>
     <td style="border: 1px solid white;">Sepolia</td>
-    <td style="border: 1px solid white;">Upcoming...</td>
-    <td style="border: 1px solid white;">🔴</td>
+    <td style="border: 1px solid white;"><a href="https://sepolia.etherscan.io/address/0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce</a></td>
+    <td style="border: 1px solid white;">🟢</td>
   <tr>
 </table><br/>
 
@@ -100,7 +100,6 @@ In the project, Ethers is used for interacting with Web3 provider and handling t
 ERC20TokenProject uses different classes for handling the request given in, input from the user (such as: checking the user balance related to Kerry Token). For this scope, the other package used in the project is Browserify. This library, allows use Node. js-style modules that compile for use in the browser. 
 This tool generates a file, which contract all the project modules, called ```bundle.js``` present in the folder called ```dist```. <br/><br/>
 
-to contract all the files (in this case Javascript) into a single file called 
 <u>Tips</u>: Each time, you modify a single (or multiple) file into ```scripts``` folder you must to run into terminal this command for building the new ```bundle.js``` file with your changes:
 
 ```sh
