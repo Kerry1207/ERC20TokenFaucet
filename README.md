@@ -1,13 +1,9 @@
 <h1 align="center">Welcome to ERC20 Token Faucet 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/Kerry1207/ERC20TokenFaucet#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
   <a href="https://github.com/Kerry1207/ERC20TokenFaucet/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/Kerry1207/ERC20TokenFaucet/blob/master/LICENSE" target="_blank">
+  <a href="./LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/Kerry1207/ERC20TokenFaucet" />
   </a>
 </p>
@@ -17,15 +13,15 @@
 > <br/>A useful <b>ERC20 token faucet</b> for testing ERC20 smart contract functions!<br/>
 > Actually, you can mint Kerry Token only in Goerli Testnet.<br/><br/>
 > How do you mint a Kerry Token?<br/>
-> Easy, go to ERC20 Token Faucet Homepage at this <a href="https://github.com/Kerry12079/ERC20TokenFaucet" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">link</a>. 
+> Easy, go to ERC20 Token Faucet Homepage at this <a href="https://www.erc20tokenfaucet.com/" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">link</a>. 
 > Then connect your Metamask wallet and click on button 'MINT TOKEN', confirm the transaction, wait the confirmation about network and enjoy with a one unit of Kerry Token!    
 > <br/>
 > How can you see your Kerry Token balance?  
-> Simple, go to ERC20 Token Faucet Homepage at this <a href="https://github.com/Kerry12079/ERC20TokenFaucet" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">link</a>. 
+> Simple, go to ERC20 Token Faucet Homepage at this <a href="https://www.erc20tokenfaucet.com/" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">link</a>. 
 > Then connect your Metamask wallet and click on button 'SEE MY BALANCE' and you can see your Kerry Token Balance with other important information!<br/><br/>
 
 ## Demo
-<img src="https://github.com/Kerry1207/ERC20TokenFaucet/blob/main/ERC20TokenFaucet.gif" alt="gif demo ERC20TokenFaucet application"><br/>
+<img src="./ERC20TokenFaucet.gif" alt="gif demo ERC20TokenFaucet application"><br/>
 
 ## Deployed Token Addresses
 <br/>
@@ -147,19 +143,22 @@ npm run hardhat-test
 
 ## Author
 
-👤 **Kerry**
-
-* Github: [@Kerry1207](https://github.com/Kerry1207)
+👤 [@Kerry1207](https://github.com/Kerry1207)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Kerry1207/ERC20TokenFaucet/issues). 
+Contributions, issues and feature requests are welcome!<br />
+For contributing to the project, please follow this steps:
+<ol>
+<li>Fork the repository from "<b>develop</b>" branch;</li>
+<li>Create your branch using this standard: feature/[NewFeatureName];</li>
+<li>Commit and push your changes;</li>
+<li>Open Pull Request.</li>
+</ol>
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
 ## 📝 License
-
-Copyright © 2022 [Kerry](https://github.com/Kerry1207).<br />
 This project is [MIT](https://github.com/Kerry1207/ERC20TokenFaucet) licensed.
