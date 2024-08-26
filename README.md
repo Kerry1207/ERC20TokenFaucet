@@ -36,16 +36,16 @@
   <tr style="text-align:center; vertical-align:middle; padding: 8px;">
     <td style="border: 1px solid white;">KTK</td>
     <td style="border: 1px solid white;">18</td>
-    <td style="border: 1px solid white;">Goerli</td>
-    <td style="border: 1px solid white;"><a href="https://goerli.etherscan.io/address/0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce</a></td>
+    <td style="border: 1px solid white;">Sepolia</td>
+    <td style="border: 1px solid white;"><a href="https://sepolia.etherscan.io/address/0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce</a></td>
     <td style="border: 1px solid white;">🟢</td>
   <tr>
   <tr style="text-align:center; vertical-align:middle; padding: 8px;">
     <td style="border: 1px solid white;">KTK</td>
     <td style="border: 1px solid white;">18</td>
-    <td style="border: 1px solid white;">Sepolia</td>
-    <td style="border: 1px solid white;"><a href="https://sepolia.etherscan.io/address/0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce</a></td>
-    <td style="border: 1px solid white;">🟢</td>
+    <td style="border: 1px solid white;">Goerli</td>
+    <td style="border: 1px solid white;"><a href="https://goerli.etherscan.io/address/0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce" style="color:blue; text-decoration:underline; text-shadow: 1px 1px white;">0xcf185f2F3Fe19D82bFdcee59E3330FD7ba5f27ce</a></td>
+    <td style="border: 1px solid white;">🔴</td>
   <tr>
 </table><br/>
 
