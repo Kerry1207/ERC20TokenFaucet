@@ -117,6 +117,7 @@ function setLayoutWalletConnected(signerAddress, networkName) {
     var btnClaim = document.getElementById('btnClaim');
     var labelUnlockMetamask = document.getElementById('labelUnlockMetamask');
     var labelTextNetwork = document.getElementById('labelTextNetwork');
+    var labelFaucetSepoliaETHText = document.getElementById('labelFaucetSepoliaETH');
     btnConnect.textContent = signerAddress;
     btnConnect.classList.remove('bg-black');
     btnConnect.classList.remove('lg:text-base');
