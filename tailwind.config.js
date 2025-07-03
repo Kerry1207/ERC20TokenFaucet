@@ -2,11 +2,14 @@ module.exports = {
   content: ["./**/*.html"],
   theme: {
     extend: {
+      colors: {
+        'link': '#5ee329',
+      },
       width: {
-        '100': '6.25rem'
+        '100': '6.25rem',
       },
       height: {
-        '100': '6.25rem'
+        '100': '6.25rem',
       },
       fontFamily: {
         'BebasNeue-Regular': ['BebasNeue'],

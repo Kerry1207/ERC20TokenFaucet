@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "tailwindcss": "npx tailwindcss -i ./css/styles.css -o ./dist/output.css --watch",
     "cypress-test": "cross-env CYPRESS_REMOTE_DEBUGGING_PORT=9222 cypress open",
     "hardhat-test": "npx hardhat test"
   },
